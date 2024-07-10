@@ -1,0 +1,26 @@
+{
+  "name": "create-node-template",
+  "version": "1.0.0",
+  "description": "an initializer to use with `npm init`",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jabez007/create-node-template.git"
+  },
+  "keywords": [
+    "npm",
+    "init",
+    "initializer",
+    "project",
+    "template"
+  ],
+  "author": "Jimmy McCann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jabez007/create-node-template/issues"
+  },
+  "homepage": "https://github.com/jabez007/create-node-template#readme"
+}
