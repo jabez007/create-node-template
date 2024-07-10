@@ -2,6 +2,7 @@
   "name": "create-node-template",
   "version": "1.0.0",
   "description": "an initializer to use with `npm init`",
+  "type": "module",
   "main": "./src/index.js",
   "bin": "./src/index.js",
   "scripts": {
