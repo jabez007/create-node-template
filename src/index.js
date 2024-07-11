@@ -76,11 +76,20 @@ async function main () {
     await askQuestion('Are you using git (Y/n)? ', 'y', (a) => a.trim().match(/^(y|n|yes|no)$/i) ? true : 'Please enter y or n')
   ).trim().match(/^(y|yes)$/i)
   if (usingGit) {
+    const gitUrl = await askQuestion('What is the URL for your Git repo? ')
+    console.log('setting package repository')
+    await exec('npm pkg set repository.type=git')
+    await exec(`npm pkg set repository.url=git+${gitUrl}`)
+
     console.log('git init')
     await exec('git init')
 
-    const gitUrl = await askQuestion('What is the URL for your Git repo? ')
-    console.log(gitUrl)
+    console.log('initial commit')
+    await exec('git add --all')
+    await exec('git commit -m "initial commit"')
+
+    console.log('adding git remote origin')
+    await exec(`git remote add origin ${gitUrl}`)
   }
   /* #### END #### */
 }
