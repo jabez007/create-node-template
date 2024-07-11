@@ -53,10 +53,7 @@ async function main() {
    * set up ESLint
    */
   console.log('initializing ESLint');
-  const esLint = childProcess.spawn('npm init @eslint/config@latest -- --config eslint-config-standard', [], { stdio: 'inherit' });
-  esLint.on('close', (code) => {
-    console.log('[esLint] terminated :',code)
-  });
+  exec("npm install --save-dev eslint-config-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-n");
   /* END */
 }
 
