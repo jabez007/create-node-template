@@ -53,7 +53,10 @@ async function main() {
    * set up ESLint
    */
   console.log('initializing ESLint');
-  childProcess.spawn('npm init @eslint/config@latest -- --config eslint-config-standard', [], { stdio: 'inherit' });
+  const esLint = childProcess.spawn('npm init @eslint/config@latest -- --config eslint-config-standard', [], { stdio: 'inherit' });
+  esLint.on('close', (code) => {
+    console.log('[esLint] terminated :',code)
+  });
   /* END */
 }
 
