@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import askQuestion from 'ask-question.js'
 import { promisify } from 'util'
 import { join } from 'path'
 import * as childProcess from 'child_process'
@@ -65,6 +66,13 @@ async function main () {
 
   console.log('adding lint to scripts in package.json')
   await exec('npm pkg set scripts.lint="eslint --fix ./src/**/*.{js,jsx,ts}"')
+  /* END */
+
+  /*
+   * initialize and configure git
+   */
+  const gitUrl = await askQuestion('What is the URL for your Git remote?')
+  console.log(gitUrl)
   /* END */
 }
 
