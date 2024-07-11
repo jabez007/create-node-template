@@ -46,7 +46,7 @@ async function main() {
   fs.closeSync(fs.openSync(join(projectWorkingDirectory, 'src', 'index.js'), 'w'));
 
   console.log('updating main in package.json');
-  await exec("npm pkg set 'main'='./src/index.js'")
+  await exec("npm pkg set main=./src/index.js");
   /* END */
 }
 
