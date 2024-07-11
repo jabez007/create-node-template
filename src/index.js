@@ -71,7 +71,7 @@ async function main () {
   /*
    * initialize and configure git
    */
-  const usingGit = await askQuestion('Are you using git (Y/n)? ', 'y', (a) => !!(a.trim().match(/^(y|n|yes|no)$/i) ? true : 'Please enter y or n'))
+  const usingGit = await askQuestion('Are you using git (Y/n)? ', 'y', (a) => a.trim().match(/^(y|n|yes|no)$/i) ? true : 'Please enter y or n')
   console.log(usingGit)
   const gitUrl = await askQuestion('What is the URL for your Git repo?')
   console.log(gitUrl)
