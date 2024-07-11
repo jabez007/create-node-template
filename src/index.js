@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 import { promisify } from 'util'
-import { stripIndent } from 'common-tags'
 import { join } from 'path'
 import * as childProcess from 'child_process'
 import * as fs from 'fs'
@@ -60,11 +59,9 @@ async function main() {
   await exec("npm install --save-dev eslint-config-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-n");
 
   console.log('writing .eslintrc file');
-  await writeFile(join(projectWorkingDirectory, '.eslintrc'), stripIndent`
-    {
-      "extends": "standard"
-    }
-  `)
+  await writeFile(join(projectWorkingDirectory, '.eslintrc'), `{
+  "extends": "standard"
+}`)
 
   console.log('adding lint to scripts in package.json');
   await exec('npm pkg set scripts.lint="eslint --fix ./src/**/*.{js,jsx,ts}"');
