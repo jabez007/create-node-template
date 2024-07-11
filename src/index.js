@@ -53,7 +53,7 @@ async function main() {
    * set up ESLint
    */
   console.log('initializing ESLint');
-  exec("npm install --save-dev eslint-config-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-n");
+  await exec("npm install --save-dev eslint-config-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-n");
   /* END */
 }
 
