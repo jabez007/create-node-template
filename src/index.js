@@ -20,7 +20,7 @@ if (process.argv.slice(2).length > 0) {
   folderName = process.argv.slice(2)[0]
 }
 const projectWorkingDirectory = join(initWorkingDirectory, folderName)
-/* END */
+/* #### END #### */
 
 async function main () {
   /*
@@ -29,14 +29,14 @@ async function main () {
   console.log(`creating directory ${folderName}`)
   await mkdir(projectWorkingDirectory)
   process.chdir(projectWorkingDirectory)
-  /* END */
+  /* #### END #### */
 
   /*
    * initialize npm in new project directory
    */
   console.log('npm init')
   await exec('npm init --yes')
-  /* END */
+  /* #### END #### */
 
   /*
    * create and set package main
@@ -49,7 +49,7 @@ async function main () {
 
   console.log('updating main in package.json')
   await exec('npm pkg set main=./src/index.js')
-  /* END */
+  /* #### END #### */
 
   /*
    * set up ESLint
@@ -66,17 +66,23 @@ async function main () {
 
   console.log('adding lint to scripts in package.json')
   await exec('npm pkg set scripts.lint="eslint --fix ./src/**/*.{js,jsx,ts}"')
-  /* END */
+  /* #### END #### */
 
   /*
    * initialize and configure git
    * ALWAYS goes last
    */
-  const usingGit = await askQuestion('Are you using git (Y/n)? ', 'y', (a) => a.trim().match(/^(y|n|yes|no)$/i) ? true : 'Please enter y or n')
-  console.log(usingGit)
-  const gitUrl = await askQuestion('What is the URL for your Git repo?')
-  console.log(gitUrl)
-  /* END */
+  const usingGit = !!(
+    await askQuestion('Are you using git (Y/n)? ', 'y', (a) => a.trim().match(/^(y|n|yes|no)$/i) ? true : 'Please enter y or n')
+  ).trim().match(/^(y|yes)$/i)
+  if (usingGit) {
+    console.log('git init')
+    await exec('git init')
+
+    const gitUrl = await askQuestion('What is the URL for your Git repo? ')
+    console.log(gitUrl)
+  }
+  /* #### END #### */
 }
 
 main()
