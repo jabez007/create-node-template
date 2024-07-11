@@ -61,6 +61,8 @@ async function main() {
     "eslint-config-standard"
   ],
   {
+    cwd: process.cwd(),
+    env: process.env,
     stdio: [process.stdin, process.stdout, process.stderr],
     encoding : 'utf8'
   });
