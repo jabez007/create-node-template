@@ -7,7 +7,7 @@ export default (query) => new Promise(resolve => {
   })
 
   ui.question(query, (resp) => {
-    resolve(resp)
     ui.close()
+    resolve(resp)
   })
 })
