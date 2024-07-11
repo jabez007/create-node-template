@@ -71,6 +71,8 @@ async function main () {
   /*
    * initialize and configure git
    */
+  const usingGit = await askQuestion('Are you using git?')
+  console.log(usingGit)
   const gitUrl = await askQuestion('What is the URL for your Git remote?')
   console.log(gitUrl)
   /* END */
