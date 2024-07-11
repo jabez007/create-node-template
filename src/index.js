@@ -48,6 +48,13 @@ async function main() {
   console.log('updating main in package.json');
   await exec("npm pkg set main=./src/index.js");
   /* END */
+
+  /*
+   * set up ESLint
+   */
+  console.log('initializing ESLint');
+  await exec('npm init @eslint/config@latest -- --config eslint-config-standard');
+  /* END */
 }
 
 main()
