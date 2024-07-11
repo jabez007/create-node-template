@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import askQuestion from 'ask-question.js'
+import askQuestion from './ask-question.js'
 import { promisify } from 'util'
 import { join } from 'path'
 import * as childProcess from 'child_process'
