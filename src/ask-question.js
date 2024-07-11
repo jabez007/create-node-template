@@ -18,9 +18,7 @@ export default async (query, preset = '', validate = () => true) => {
   let resp
   while (true) {
     resp = (await question(query)) || preset
-    console.log(`resp: ${resp}`)
     const valid = validate(resp)
-    console.log(`valid: ${valid}`)
     if (valid === true) {
       break
     }
