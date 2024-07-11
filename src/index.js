@@ -8,7 +8,7 @@ const exec = promisify(childProcess.exec)
 const mkdir = promisify(fs.mkdir)
 
 /*
- * make a new directory and move into it
+ * calculate project directory name
  */
 const defaultFolderName = "my-node-app";
 const initWorkingDirectory = process.cwd();
@@ -17,15 +17,37 @@ let folderName = defaultFolderName;
 if (process.argv.slice(2).length > 0) {
   folderName = process.argv.slice(2)[0];
 }
-console.log(`creating directory ${folderName}`);
-fs.mkdirSync(join(initWorkingDirectory, folderName));
-
-process.chdir(join(initWorkingDirectory, folderName));
+const projectWorkingDirectory = join(initWorkingDirectory, folderName)
 /* END */
 
 async function main() {
-    console.log('npm init');
-    await exec('npm init --yes');
+  /*
+   * make new directory and move into it
+   */
+  console.log(`creating directory ${folderName}`);
+  await mkdir(projectWorkingDirectory);
+  process.chdir(projectWorkingDirectory);
+  /* END */
+
+  /* 
+   * initialize npm in new project directory
+   */
+  console.log('npm init');
+  await exec('npm init --yes');
+  /* END */
+
+  /*
+   * create and set package main
+   */
+  console.log('creating src directory');
+  await mkdir(join(projectWorkingDirectory, 'src'))
+
+  console.log('creating index.js file');
+  fs.closeSync(fs.openSync(join(projectWorkingDirectory, 'src', 'index.js'), 'w'));
+
+  console.log('updating main in package.json');
+  await exec("npm pkg set 'main'='./src/index.js'")
+  /* END */
 }
 
 main()
