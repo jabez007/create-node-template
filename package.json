@@ -6,6 +6,7 @@
   "main": "./src/index.js",
   "bin": "./src/index.js",
   "scripts": {
+    "lint": "eslint --fix ./src/**/*.{js,jsx,ts}",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,5 +25,11 @@
   "bugs": {
     "url": "https://github.com/jabez007/create-node-template/issues"
   },
-  "homepage": "https://github.com/jabez007/create-node-template#readme"
+  "homepage": "https://github.com/jabez007/create-node-template#readme",
+  "devDependencies": {
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.4.0"
+  }
 }
