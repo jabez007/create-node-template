@@ -6,6 +6,8 @@ import { promisify } from 'util'
 const exec = promisify(childProcess.exec)
 
 async function main() {
+    console.log(process.argv);
+
     console.log('npm init')
     await exec('npm init --yes')
 }
