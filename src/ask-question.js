@@ -1,7 +1,7 @@
 import * as readline from 'readline'
 import { promisify } from 'util'
 
-async function questionLoop (query, preset, validate, resolve) {
+export default async (query, preset = '', validate = () => true) => {
   const ui = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -19,7 +19,5 @@ async function questionLoop (query, preset, validate, resolve) {
     console.log(valid || `Invalid response: ${resp}`)
   }
   ui.close()
-  resolve(resp)
+  return resp
 }
-
-export default (query, preset = '', validate = () => true) => new Promise(resolve => questionLoop(query, preset, validate, resolve))
