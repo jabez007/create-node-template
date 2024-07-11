@@ -5,7 +5,6 @@ import * as childProcess from 'child_process'
 import * as fs from 'fs'
 
 const exec = promisify(childProcess.exec);
-const spawn = promisify(childProcess.spawn);
 const mkdir = promisify(fs.mkdir);
 
 /*
@@ -54,7 +53,7 @@ async function main() {
    * set up ESLint
    */
   console.log('initializing ESLint');
-  await spawn('npm init @eslint/config@latest -- --config eslint-config-standard', [], { stdio: 'inherit' });
+  childProcess.spawn('npm init @eslint/config@latest -- --config eslint-config-standard', [], { stdio: 'inherit' });
   /* END */
 }
 
