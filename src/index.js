@@ -53,19 +53,7 @@ async function main() {
    * set up ESLint
    */
   console.log('initializing ESLint (this may take a while)');
-  childProcess.spawnSync("npm", [
-    "init",
-    "@eslint/config@latest",
-    "--",
-    "--config",
-    "eslint-config-standard"
-  ],
-  {
-    cwd: process.cwd(),
-    env: process.env,
-    stdio: [process.stdin, process.stdout, process.stderr],
-    encoding : 'utf8'
-  });
+  await exec("npm install --save-dev eslint-config-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-n")
   /* END */
 }
 
