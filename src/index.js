@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { promisify } from 'util'
+import { stripIndent } from 'common-tags'
 import { join } from 'path'
 import * as childProcess from 'child_process'
 import * as fs from 'fs'
