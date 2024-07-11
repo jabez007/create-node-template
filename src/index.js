@@ -80,4 +80,7 @@ async function main () {
 
 main()
   .catch((err) => console.log('Error', err))
-  .then(() => console.log('Done'))
+  .then(() => {
+    console.log('Done')
+    process.exit(0)
+  })
