@@ -65,6 +65,9 @@ async function main () {
   "extends": "standard"
 }`)
 
+  console.log('writing .eslintignore file')
+  await writeFile(join(projectWorkingDirectory, '.eslintignore'), 'test')
+
   console.log('adding lint to scripts in package.json')
   await exec('npm pkg set scripts.lint="eslint --fix ./src/**/*.{js,jsx,ts}"')
   /* #### END #### */
@@ -89,6 +92,21 @@ async function main () {
   await cp(join(__dirname, '..', 'src'), join(projectWorkingDirectory, 'src'), {
     recursive: true
   })
+  /* #### END #### */
+
+  /*
+   * install Mocha
+   */
+  console.log('installing Mocha (this may take a while)')
+  await exec('npm install --save-dev mocha')
+
+  console.log('copying test directory')
+  await cp(join(__dirname, '..', 'test'), join(projectWorkingDirectory, 'test'), {
+    recursive: true
+  })
+
+  console.log('adding test to scripts in package.json')
+  await exec('npm pkg set scripts.test=mocha')
   /* #### END #### */
 
   /*
