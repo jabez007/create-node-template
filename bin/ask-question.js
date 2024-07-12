@@ -14,7 +14,7 @@ function question (inquiry) {
   })
 }
 
-module.exports = async (query, preset = '', validate = () => true) => {
+export default async (query, preset = '', validate = () => true) => {
   let resp
   while (true) {
     resp = (await question(query)) || preset
