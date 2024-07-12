@@ -1,4 +1,4 @@
-import readline from 'readline'
+const readline = require('readline')
 
 function question (inquiry) {
   return new Promise(resolve => {
@@ -14,7 +14,7 @@ function question (inquiry) {
   })
 }
 
-export default async (query, preset = '', validate = () => true) => {
+module.exports = async (query, preset = '', validate = () => true) => {
   let resp
   while (true) {
     resp = (await question(query)) || preset

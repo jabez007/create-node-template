@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import * as fs from 'fs'
-import { join } from 'path'
-import { promisify } from 'util'
-import * as childProcess from 'child_process'
-import askQuestion from './ask-question.js'
+const fs = require('fs')
+const { join } = require('path')
+const { promisify } = require('util')
+const childProcess = require('child_process')
+const askQuestion = require('./ask-question.js')
 
 const exec = promisify(childProcess.exec)
 const mkdir = promisify(fs.mkdir)
@@ -72,7 +72,7 @@ async function main () {
   /*
    * install dotENV
    */
-  console.log('installing dotENV (this may take a while')
+  console.log('installing dotENV (this may take a while)')
   await exec('npm install dotenv')
 
   console.log('writing .env file')
@@ -82,7 +82,7 @@ async function main () {
   /*
    * install Express
    */
-  console.log('installing Express (this may take a while')
+  console.log('installing Express (this may take a while)')
   await exec('npm install express')
 
   console.log('copying src directory')
