@@ -1,4 +1,4 @@
-const readline = require('readline')
+import readline from 'readline'
 
 function question (inquiry) {
   return new Promise(resolve => {

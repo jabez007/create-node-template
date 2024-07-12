@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-const fs = require('fs')
-const { join } = require('path')
-const { promisify } = require('util')
-const childProcess = require('child_process')
-const askQuestion = require('./ask-question.js')
+import * as fs from 'fs'
+import { join } from 'path'
+import { promisify } from 'util'
+import * as childProcess from 'child_process'
+import askQuestion from './ask-question.js'
 
 const exec = promisify(childProcess.exec)
 const mkdir = promisify(fs.mkdir)
