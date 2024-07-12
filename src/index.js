@@ -81,6 +81,9 @@ async function main () {
     await exec('npm pkg set repository.type=git')
     await exec(`npm pkg set repository.url=git+${gitUrl}`)
 
+    console.log('adding node gitignore')
+    await exec('npx gitignore node')
+
     console.log('git init')
     await exec('git init')
 
