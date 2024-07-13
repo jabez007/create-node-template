@@ -85,8 +85,14 @@ async function main () {
   /*
    * install Express
    */
-  console.log('installing Express (this may take a while)')
+  console.log('installing ExpressJS (this may take a while)')
   await exec('npm install express')
+
+  console.log('installing Morgan (this may take a while)')
+  await exec('npm install morgan')
+
+  console.log('adding alias for lib')
+  await exec('npm pkg set dependencies.~lib=file:./src/lib')
 
   console.log('copying src directory')
   await cp(join(__dirname, '..', 'src'), join(projectWorkingDirectory, 'src'), {
