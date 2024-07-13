@@ -33,9 +33,6 @@
     "mocha": "^10.6.0"
   },
   "dependencies": {
-    "~lib": "file:./src/lib",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "morgan": "^1.10.0"
+    "dotenv": "^16.4.5"
   }
 }

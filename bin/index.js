@@ -45,8 +45,10 @@ async function main () {
   console.log('creating src directory')
   await mkdir(join(projectWorkingDirectory, 'src'))
 
-  console.log('creating index.js file')
-  fs.closeSync(fs.openSync(join(projectWorkingDirectory, 'src', 'index.js'), 'w'))
+  console.log('copying src directory')
+  await cp(join(__dirname, '..', 'src'), join(projectWorkingDirectory, 'src'), {
+    recursive: true
+  })
 
   console.log('updating main in package.json')
   await exec('npm pkg set main=./src/index.js')
@@ -79,25 +81,7 @@ async function main () {
   await exec('npm install dotenv')
 
   console.log('writing .env file')
-  await writeFile(join(projectWorkingDirectory, '.env'), 'PORT=8080')
-  /* #### END #### */
-
-  /*
-   * install Express
-   */
-  console.log('installing ExpressJS (this may take a while)')
-  await exec('npm install express')
-
-  console.log('installing Morgan (this may take a while)')
-  await exec('npm install morgan')
-
-  console.log('adding alias for lib')
-  await exec('npm pkg set dependencies.~lib=file:./src/lib')
-
-  console.log('copying src directory')
-  await cp(join(__dirname, '..', 'src'), join(projectWorkingDirectory, 'src'), {
-    recursive: true
-  })
+  await writeFile(join(projectWorkingDirectory, '.env'), 'MSG=Hello World')
   /* #### END #### */
 
   /*
