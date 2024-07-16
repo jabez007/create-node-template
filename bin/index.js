@@ -52,6 +52,9 @@ async function main () {
 
   console.log('updating main in package.json')
   await exec('npm pkg set main=./src/index.js')
+
+  console.log('adding alias for utils')
+  await exec('npm pkg set dependencies.~utils=file:./src/utils')
   /* #### END #### */
 
   /*
@@ -82,6 +85,13 @@ async function main () {
 
   console.log('writing .env file')
   await writeFile(join(projectWorkingDirectory, '.env'), 'MSG=Hello World')
+  /* #### END #### */
+
+  /*
+   * install Winston
+   */
+  console.log('installing Winston (this may take a while)')
+  await exec('npm install winston')
   /* #### END #### */
 
   /*

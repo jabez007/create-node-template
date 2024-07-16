@@ -33,6 +33,8 @@
     "mocha": "^10.6.0"
   },
   "dependencies": {
-    "dotenv": "^16.4.5"
+    "~utils": "file:./src/utils",
+    "dotenv": "^16.4.5",
+    "winston": "^3.13.1"
   }
 }
