@@ -1,10 +1,12 @@
+require('module-alias/register')
+
 const dotenv = require('dotenv')
 
 dotenv.config()
 
 console.log(`Message: ${process.env.MSG}`)
 
-const Logger = require('~utils/winston')
+const Logger = require('@utils/winston')
 
 Logger.error('This is an error log')
 Logger.warn('This is a warn log')

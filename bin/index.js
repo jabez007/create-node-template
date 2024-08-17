@@ -52,9 +52,36 @@ async function main () {
 
   console.log('updating main in package.json')
   await exec('npm pkg set main=./src/index.js')
+  /* #### END #### */
+
+  /*
+   * install module-alias
+   */
+  console.log('installing Module Alias (this may take a while)')
+  await exec('npm install module-alias')
+
+  console.log('adding alias for src')
+  await exec('npm pkg set _moduleAliases.@=./src')
 
   console.log('adding alias for utils')
-  await exec('npm pkg set dependencies.~utils=file:./src/utils')
+  await exec('npm pkg set _moduleAliases.@utils=./src/utils')
+  /* #### END #### */
+
+  /*
+   * install dotENV
+   */
+  console.log('installing dotENV (this may take a while)')
+  await exec('npm install dotenv')
+
+  console.log('writing .env file')
+  await writeFile(join(projectWorkingDirectory, '.env'), 'MSG=Hello World')
+  /* #### END #### */
+
+  /*
+   * install Winston
+   */
+  console.log('installing Winston (this may take a while)')
+  await exec('npm install winston')
   /* #### END #### */
 
   /*
@@ -76,23 +103,6 @@ async function main () {
   /* #### END #### */
 
   /*
-   * install dotENV
-   */
-  console.log('installing dotENV (this may take a while)')
-  await exec('npm install dotenv')
-
-  console.log('writing .env file')
-  await writeFile(join(projectWorkingDirectory, '.env'), 'MSG=Hello World')
-  /* #### END #### */
-
-  /*
-   * install Winston
-   */
-  console.log('installing Winston (this may take a while)')
-  await exec('npm install winston')
-  /* #### END #### */
-
-  /*
    * install Mocha
    */
   console.log('installing Mocha (this may take a while)')
@@ -104,7 +114,7 @@ async function main () {
   })
 
   console.log('adding test to scripts in package.json')
-  await exec('npm pkg set scripts.test=mocha')
+  await exec('npm pkg set scripts.test="NODE_ENV=test mocha -r module-alias/register"')
   /* #### END #### */
 
   /*
