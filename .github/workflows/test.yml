@@ -21,6 +21,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - uses: jabez007/create-node-template/.github/shared/node/test@development
+      - uses: jabez007/create-node-template/.github/shared/node/test@master
         with:
           node_version: ${{ matrix.node_version }}
