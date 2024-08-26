@@ -1,0 +1,22 @@
+name: Run Unit Tests Across Node Versions
+description: ''
+
+inputs:
+  node_version:
+    description: ''
+
+runs:
+  using: composite
+  steps:
+    - name: Use Node.js ${{ inputs.node_version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ inputs.node_version }}
+
+    - name: Install dependencies
+      run: npm install
+      shell: bash
+
+    - name: Run tests
+      run: npm test
+      shell: bash
